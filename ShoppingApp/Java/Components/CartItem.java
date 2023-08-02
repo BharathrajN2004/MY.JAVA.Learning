@@ -1,15 +1,15 @@
 package ShoppingApp.Java.Components;
 
 public class CartItem {
-    Product product;
-    double quantity;
+    public Product product;
+    public double quantity;
 
-    CartItem(Product product, double quantity) {
+    public CartItem(Product product, double quantity) {
         this.product = product;
         this.quantity = quantity;
     }
 
-    double calculateTotal() {
+    public double calculateTotal() {
         double total = product.price * quantity;
         return total;
     }
