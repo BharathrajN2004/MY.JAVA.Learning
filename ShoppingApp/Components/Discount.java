@@ -1,4 +1,4 @@
-package ShoppingApp.Java.Components;
+package ShoppingApp.Components;
 
 import java.util.List;
 

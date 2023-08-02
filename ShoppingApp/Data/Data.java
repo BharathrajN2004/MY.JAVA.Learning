@@ -1,10 +1,10 @@
-package ShoppingApp.Java.Data;
+package ShoppingApp.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ShoppingApp.Java.Components.Discount;
-import ShoppingApp.Java.Components.Product;
+import ShoppingApp.Components.Discount;
+import ShoppingApp.Components.Product;
 
 public class Data {
     public static List<Product> products;

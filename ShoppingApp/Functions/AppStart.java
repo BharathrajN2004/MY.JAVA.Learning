@@ -1,12 +1,12 @@
-package ShoppingApp.Java.Functions;
+package ShoppingApp.Functions;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import ShoppingApp.Java.Components.CartItem;
-import ShoppingApp.Java.Components.Product;
-import ShoppingApp.Java.Data.Data;
+import ShoppingApp.Components.CartItem;
+import ShoppingApp.Components.Product;
+import ShoppingApp.Data.Data;
 
 public class AppStart {
     List<CartItem> cartItems;

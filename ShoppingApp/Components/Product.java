@@ -1,4 +1,4 @@
-package ShoppingApp.Java.Components;
+package ShoppingApp.Components;
 
 public class Product {
     public int productId;

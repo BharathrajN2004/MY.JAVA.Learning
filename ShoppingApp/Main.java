@@ -1,7 +1,7 @@
-package ShoppingApp.Java;
+package ShoppingApp;
 
-import ShoppingApp.Java.Data.Data;
-import ShoppingApp.Java.Functions.AppStart;
+import ShoppingApp.Data.Data;
+import ShoppingApp.Functions.AppStart;
 
 public class Main {
     public static void main(String[] args) {

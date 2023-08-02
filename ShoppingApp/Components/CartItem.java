@@ -1,4 +1,4 @@
-package ShoppingApp.Java.Components;
+package ShoppingApp.Components;
 
 public class CartItem {
     public Product product;
