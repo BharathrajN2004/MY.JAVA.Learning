@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import ShoppingApp.Components.CartItem;
+import ShoppingApp.Components.Discount;
 import ShoppingApp.Components.Product;
 import ShoppingApp.Data.Data;
 
@@ -47,13 +48,24 @@ public class AppStart {
         }
     }
 
-    public void showProducts() {
+    public static void showProducts() {
         System.out.println("----- Available Products -----");
-        System.out.println("ProductID | Name       | Unit | Price");
-        System.out.println("---------------------------------------");
+        System.out.println("ProductID | Name       | Unit | Price | Discount");
+        System.out.println("-----------------------------------------------");
         for (Product product : Data.products) {
-            System.out.printf("%-9d | %-10s | %-4s | %.2f%n", product.productId, product.name, product.unit,
-                    product.price);
+            System.out.printf("%-9d | %-10s | %-4s | %.2f | ", product.productId, product.name, product.unit, product.price);
+            boolean hasDiscount = false;
+            for (Discount discount : Data.discounts) {
+                if (discount.productIds.contains(product.productId)) {
+                    System.out.print(discount.name + " (" + discount.effectiveStartDate + " - " + discount.effectiveEndDate + ")");
+                    hasDiscount = true;
+                    break;
+                }
+            }
+            if (!hasDiscount) {
+                System.out.print("No Discount");
+            }
+            System.out.println();
         }
         System.out.println();
     }
@@ -65,17 +77,31 @@ public class AppStart {
         }
 
         System.out.println("----- Shopping Cart -----");
-        System.out.println("ProductID | Name       | Unit | Quantity | Price");
-        System.out.println("-----------------------------------------------");
+        System.out.println("ProductID | Name       | Unit | Quantity | Price | Discount | Total Price");
+        System.out.println("-----------------------------------------------------------------------");
         double cartTotal = 0;
+        double cartDiscount = 0;
         for (CartItem cartItem : cartItems) {
             double total = cartItem.calculateTotal();
+            double discountAmount = cartItem.calculateDiscountTotal();
             cartTotal += total;
-            System.out.printf("%-9d | %-10s | %-4s | %-8.2f | %.2f%n", cartItem.product.productId,
-                    cartItem.product.name, cartItem.product.unit, cartItem.quantity, total);
+            cartDiscount += discountAmount;
+            System.out.printf("%-9d | %-10s | %-4s | %-8.2f | %.2f | ", cartItem.product.productId,
+                    cartItem.product.name, cartItem.product.unit, cartItem.quantity, cartItem.product.price);
+            String discountInfo = "No Discount";
+            for (Discount discountObj : Data.discounts) {
+                if (discountObj.productIds.contains(cartItem.product.productId)) {
+                    discountInfo = discountObj.name;
+                    break;
+                }
+            }
+            System.out.printf("%-9s | %.2f | %.2f%n", discountInfo, discountAmount, total);
         }
-        System.out.println("-----------------------------------------------");
-        System.out.printf("Total: %.2f%n", cartTotal);
+        System.out.println("-----------------------------------------------------------------------");
+        System.out.printf("Total Actual Amount: %.2f%n", cartTotal);
+        System.out.printf("Total Discount Amount: %.2f%n", cartDiscount);
+        System.out.println("-----------------------------------------------------------------------");
+        System.out.printf("Final Cart Total: %.2f%n", cartTotal - cartDiscount);
         System.out.println();
     }
 

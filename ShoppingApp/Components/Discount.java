@@ -3,11 +3,11 @@ package ShoppingApp.Components;
 import java.util.List;
 
 public class Discount {
-    int discountId;
-    List<Integer> productIds;
-    String name;
-    String effectiveStartDate;
-    String effectiveEndDate;
+    public int discountId;
+    public List<Integer> productIds;
+    public String name;
+    public String effectiveStartDate;
+    public String effectiveEndDate;
 
     public Discount(int discountId, List<Integer> productIds, String name, String effectiveStartDate,
             String effectiveEndDate) {
