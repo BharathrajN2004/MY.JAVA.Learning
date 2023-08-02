@@ -9,7 +9,7 @@ public class Discount {
     String effectiveStartDate;
     String effectiveEndDate;
 
-    Discount(int discountId, List<Integer> productIds, String name, String effectiveStartDate,
+    public Discount(int discountId, List<Integer> productIds, String name, String effectiveStartDate,
             String effectiveEndDate) {
         this.discountId = discountId;
         this.productIds = productIds;
