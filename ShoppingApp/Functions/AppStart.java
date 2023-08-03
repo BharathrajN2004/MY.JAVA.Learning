@@ -128,19 +128,24 @@ public class AppStart {
         System.out.print("Enter the quantity required: ");
         double quantity = scanner.nextDouble();
 
-        boolean notExists = true;
-        for (CartItem cart : cartItems) {
-            if (cart.product.productId == productId) {
-                cart.quantity += quantity;
-                notExists = false;
-                break;
-            }
-        }
-        if (notExists) {
-            cartItems.add(new CartItem(selectedProduct, quantity));
-        }
+        if (quantity >= 0) {
 
-        System.out.println("Product added to the cart successfully!");
-        System.out.println();
+            boolean notExists = true;
+            for (CartItem cart : cartItems) {
+                if (cart.product.productId == productId) {
+                    cart.quantity += quantity;
+                    notExists = false;
+                    break;
+                }
+            }
+            if (notExists) {
+                cartItems.add(new CartItem(selectedProduct, quantity));
+            }
+
+            System.out.println("Product added to the cart successfully!");
+            System.out.println();
+        } else {
+            System.out.println("The quantity cannot be a negative value. Please try again.");
+        }
     }
 }
