@@ -128,7 +128,7 @@ public class AppStart {
         System.out.print("Enter the quantity required: ");
         double quantity = scanner.nextDouble();
 
-        if (quantity >= 0) {
+        if (quantity >= 1) {
 
             boolean notExists = true;
             for (CartItem cart : cartItems) {
@@ -145,7 +145,7 @@ public class AppStart {
             System.out.println("Product added to the cart successfully!");
             System.out.println();
         } else {
-            System.out.println("The quantity cannot be a negative value. Please try again.");
+            System.out.println("The quantity cannot be a negative or zero value. Please try again.");
         }
     }
 }
