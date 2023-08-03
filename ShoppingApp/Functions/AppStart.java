@@ -53,11 +53,13 @@ public class AppStart {
         System.out.println("ProductID | Name       | Unit | Price | Discount");
         System.out.println("-----------------------------------------------");
         for (Product product : Data.products) {
-            System.out.printf("%-9d | %-10s | %-4s | %.2f | ", product.productId, product.name, product.unit, product.price);
+            System.out.printf("%-9d | %-10s | %-4s | %.2f | ", product.productId, product.name, product.unit,
+                    product.price);
             boolean hasDiscount = false;
             for (Discount discount : Data.discounts) {
                 if (discount.productIds.contains(product.productId)) {
-                    System.out.print(discount.name + " (" + discount.effectiveStartDate + " - " + discount.effectiveEndDate + ")");
+                    System.out.print(discount.name + " (" + discount.effectiveStartDate + " - "
+                            + discount.effectiveEndDate + ")");
                     hasDiscount = true;
                     break;
                 }
@@ -126,7 +128,18 @@ public class AppStart {
         System.out.print("Enter the quantity required: ");
         double quantity = scanner.nextDouble();
 
-        cartItems.add(new CartItem(selectedProduct, quantity));
+        boolean notExists = true;
+        for (CartItem cart : cartItems) {
+            if (cart.product.productId == productId) {
+                cart.quantity += quantity;
+                notExists = false;
+                break;
+            }
+        }
+        if (notExists) {
+            cartItems.add(new CartItem(selectedProduct, quantity));
+        }
+
         System.out.println("Product added to the cart successfully!");
         System.out.println();
     }
